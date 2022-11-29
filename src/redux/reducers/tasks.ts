@@ -16,4 +16,8 @@ const tasks = (state = initialState, { type, payload }: any) => {
   }
 }
 
+export const selectProjectTasks = (state: any) => {
+  return state.tasks.items
+}
+
 export default tasks

@@ -16,4 +16,8 @@ const projects = (state = initialState, { type, payload }: any) => {
   }
 }
 
+export const selectProjects = (state: any) => {
+  return state.projects.items
+}
+
 export default projects
