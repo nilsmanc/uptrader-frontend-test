@@ -10,7 +10,7 @@ export const ProjectsPage = () => {
 
   return (
     <div>
-      {projects.map((project: ProjectType) => (
+      {[].map((project: ProjectType) => (
         <div onClick={() => handleClick(project._id)}>{project.title}</div>
       ))}
     </div>

@@ -17,3 +17,8 @@ export type TaskType = {
   updatedAt: string
   __v: number
 }
+
+export type ProjectSliceState = {
+  items: ProjectType[]
+  status: 'loading' | 'loaded' | 'error'
+}
