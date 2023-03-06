@@ -1,25 +1,28 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import instance from '../../axios'
-import { ProjectSliceState, ProjectType } from '../../types'
+import { ProjectsSliceState, ProjectType } from '../../types'
 
-export const fetchProjects = createAsyncThunk<Array<ProjectType>>('posts/fetchPosts', async () => {
-  const { data } = await instance.get('/posts')
-  return data
-})
-
-export const fetchRemoveProject = createAsyncThunk<void, string>(
-  'posts/fetchRemovePost',
-  async (id) => instance.delete(`/posts/${id}`),
+export const fetchProjects = createAsyncThunk<Array<ProjectType>>(
+  'projects/fetchProjects',
+  async () => {
+    const { data } = await instance.get('/projects')
+    return data
+  },
 )
 
-const initialState: ProjectSliceState = {
+export const fetchRemoveProject = createAsyncThunk<void, string>(
+  'projects/fetchRemoveProject',
+  async (id) => instance.delete(`/projects/${id}`),
+)
+
+const initialState: ProjectsSliceState = {
   items: [],
   status: 'loading',
 }
 
 const projectsSlice = createSlice({
-  name: 'posts',
+  name: 'projects',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

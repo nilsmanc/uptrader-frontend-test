@@ -18,7 +18,12 @@ export type TaskType = {
   __v: number
 }
 
-export type ProjectSliceState = {
+export type ProjectsSliceState = {
   items: ProjectType[]
+  status: 'loading' | 'loaded' | 'error'
+}
+
+export type TasksSliceState = {
+  items: TaskType[]
   status: 'loading' | 'loaded' | 'error'
 }
