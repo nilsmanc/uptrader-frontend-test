@@ -15,7 +15,12 @@ export type TaskType = {
   _id: string
   createdAt: string
   updatedAt: string
-  __v: number
+}
+
+export type CommentType = {
+  text: string
+  task: TaskType
+  _id: string
 }
 
 export type ProjectsSliceState = {
@@ -25,5 +30,10 @@ export type ProjectsSliceState = {
 
 export type TasksSliceState = {
   items: TaskType[]
+  status: 'loading' | 'loaded' | 'error'
+}
+
+export type CommentsSliceState = {
+  items: CommentType[]
   status: 'loading' | 'loaded' | 'error'
 }
