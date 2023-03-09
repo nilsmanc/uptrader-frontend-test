@@ -8,6 +8,14 @@ export const fetchTasks = createAsyncThunk<Array<TaskType>>('tasks/fetchTasks', 
   return data
 })
 
+export const fetchProjectTasks = createAsyncThunk<Array<TaskType>, string>(
+  'tasks/fetchProjectTasks',
+  async (id) => {
+    const { data } = await instance.get(`/tasks/project/${id}`)
+    return data
+  },
+)
+
 export const fetchRemoveTask = createAsyncThunk<void, string>('tasks/fetchRemoveTask', async (id) =>
   instance.delete(`/tasks/${id}`),
 )
@@ -31,6 +39,18 @@ const tasksSlice = createSlice({
       state.status = 'loaded'
     })
     builder.addCase(fetchTasks.rejected, (state) => {
+      state.items = []
+      state.status = 'error'
+    })
+    builder.addCase(fetchProjectTasks.pending, (state) => {
+      state.items = []
+      state.status = 'loading'
+    })
+    builder.addCase(fetchProjectTasks.fulfilled, (state, action) => {
+      state.items = action.payload
+      state.status = 'loaded'
+    })
+    builder.addCase(fetchProjectTasks.rejected, (state) => {
       state.items = []
       state.status = 'error'
     })
