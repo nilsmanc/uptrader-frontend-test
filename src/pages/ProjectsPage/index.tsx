@@ -9,7 +9,7 @@ export const ProjectsPage = () => {
   const navigate = useNavigate()
 
   const handleClick = (id: string) => {
-    navigate('/tasks', { state: { id } })
+    navigate(`/tasks/${id}`)
   }
 
   const dispatch = useAppDispatch()
