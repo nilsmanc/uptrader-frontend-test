@@ -27,7 +27,7 @@ export const TasksPage = () => {
   }, [id])
 
   return (
-    <div className={styles.boards}>
+    <div className={styles.list}>
       {tasks.map((task: TaskType) => (
         <div onClick={() => handleClick(task._id)} key={task._id}>
           {task.title}

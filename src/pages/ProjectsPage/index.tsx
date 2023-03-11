@@ -5,6 +5,8 @@ import { fetchProjects } from '../../redux/slices/projects'
 import { RootState, useAppDispatch } from '../../redux/store'
 import { ProjectType } from '../../types'
 
+import styles from './ProjectsPage.module.scss'
+
 export const ProjectsPage = () => {
   const navigate = useNavigate()
 
@@ -23,7 +25,7 @@ export const ProjectsPage = () => {
   }, [])
 
   return (
-    <div>
+    <div className={styles.list}>
       {isProjectsLoading ? (
         <div>...Loading</div>
       ) : (

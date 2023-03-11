@@ -4,6 +4,8 @@ import { RootState, useAppDispatch } from '../../redux/store'
 import { fetchTask } from '../../redux/slices/tasks'
 import { useSelector } from 'react-redux'
 
+import styles from './TaskPage.module.scss'
+
 export const TaskPage = () => {
   const location = useLocation()
 
@@ -19,5 +21,5 @@ export const TaskPage = () => {
     dispatch(fetchTask(id))
   }, [])
 
-  return <div>{taskItem.title}</div>
+  return <div className={styles.item}>{taskItem.title}</div>
 }
