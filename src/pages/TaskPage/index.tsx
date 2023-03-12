@@ -13,7 +13,7 @@ export const TaskPage = () => {
 
   const dispatch = useAppDispatch()
 
-  const taskItem = useSelector((state: RootState) => state.tasks.items)
+  const taskItem = useSelector((state: RootState) => state.tasks.item)
 
   console.log(taskItem)
 

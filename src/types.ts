@@ -29,7 +29,8 @@ export type ProjectsSliceState = {
 }
 
 export type TasksSliceState = {
-  items: TaskType[] | any
+  items: TaskType[]
+  item: TaskType
   status: 'loading' | 'loaded' | 'error'
 }
 

@@ -24,7 +24,7 @@ export const TasksPage = () => {
 
   useEffect(() => {
     dispatch(fetchProjectTasks(id))
-  }, [id])
+  }, [location])
 
   return (
     <div className={styles.list}>
