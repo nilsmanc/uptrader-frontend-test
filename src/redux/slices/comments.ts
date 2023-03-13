@@ -3,10 +3,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import instance from '../../axios'
 import { CommentsSliceState, CommentType } from '../../types'
 
-export const fetchComments = createAsyncThunk<Array<CommentType>>(
-  'comments/fetchComments',
-  async () => {
-    const { data } = await instance.get('/comments')
+export const fetchTaskComments = createAsyncThunk<Array<CommentType>, string>(
+  'comments/fetchTaskComments',
+  async (id) => {
+    const { data } = await instance.get(`/comments/task/${id}`)
     return data
   },
 )
@@ -26,15 +26,15 @@ const commentsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchComments.pending, (state) => {
+    builder.addCase(fetchTaskComments.pending, (state) => {
       state.items = []
       state.status = 'loading'
     })
-    builder.addCase(fetchComments.fulfilled, (state, action) => {
+    builder.addCase(fetchTaskComments.fulfilled, (state, action) => {
       state.items = action.payload
       state.status = 'loaded'
     })
-    builder.addCase(fetchComments.rejected, (state) => {
+    builder.addCase(fetchTaskComments.rejected, (state) => {
       state.items = []
       state.status = 'error'
     })

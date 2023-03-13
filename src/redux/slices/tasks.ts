@@ -3,11 +3,6 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import instance from '../../axios'
 import { TasksSliceState, TaskType } from '../../types'
 
-export const fetchTasks = createAsyncThunk<Array<TaskType>>('tasks/fetchTasks', async () => {
-  const { data } = await instance.get('/tasks')
-  return data
-})
-
 export const fetchTask = createAsyncThunk<TaskType, string>('tasks/fetchTask', async (id) => {
   const { data } = await instance.get(`/tasks/${id}`)
   return data
@@ -46,18 +41,6 @@ const tasksSlice = createSlice({
     })
     builder.addCase(fetchTask.rejected, (state) => {
       state.item = {} as TaskType
-      state.status = 'error'
-    })
-    builder.addCase(fetchTasks.pending, (state) => {
-      state.items = []
-      state.status = 'loading'
-    })
-    builder.addCase(fetchTasks.fulfilled, (state, action) => {
-      state.items = action.payload
-      state.status = 'loaded'
-    })
-    builder.addCase(fetchTasks.rejected, (state) => {
-      state.items = []
       state.status = 'error'
     })
     builder.addCase(fetchProjectTasks.pending, (state) => {
