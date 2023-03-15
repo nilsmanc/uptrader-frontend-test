@@ -5,13 +5,9 @@ export type ProjectType = {
 }
 
 export type TaskType = {
-  number: string
   title: string
   description: string
-  expirationDate: string
   project: ProjectType
-  priority: string
-  status: string
   _id: string
   createdAt: string
   updatedAt: string

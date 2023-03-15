@@ -26,7 +26,8 @@ export const TaskPage = () => {
   return (
     <>
       <div className={styles.item}>
-        {taskItem.title}
+        <p>{taskItem.title}</p>
+        <p>{taskItem.description}</p>
         <hr />
         <div>
           {comments.map((comment: CommentType) => (
