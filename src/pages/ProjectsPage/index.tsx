@@ -56,7 +56,7 @@ export const ProjectsPage = () => {
           </div>
         ))
       )}
-      <input onChange={(e) => setTitle(e.target.value)} />
+      <input value={title} onChange={(e) => setTitle(e.target.value)} />
       <button onClick={() => addHandler()}>Add</button>
     </div>
   )

@@ -28,7 +28,10 @@ export const TasksPage = () => {
 
   const id = location.pathname.substring(7)
 
+  const tasksData = useSelector((state: RootState) => state.tasks)
   const tasks = useSelector((state: RootState) => state.tasks.items)
+
+  const isTasksLoading = tasksData.status === 'loading'
 
   const addHandler = async () => {
     try {
@@ -51,16 +54,20 @@ export const TasksPage = () => {
 
   return (
     <div className={styles.list}>
-      {tasks.map((task: TaskType) => (
-        <div>
-          <div onClick={() => handleClick(task._id)} key={task._id}>
-            {task.title}
+      {isTasksLoading ? (
+        <div>...Loading</div>
+      ) : (
+        tasks.map((task: TaskType) => (
+          <div>
+            <div onClick={() => handleClick(task._id)} key={task._id}>
+              {task.title}
+            </div>
+            <button onClick={() => deleteHandler(task._id)}>X</button>
           </div>
-          <button onClick={() => deleteHandler(task._id)}>X</button>
-        </div>
-      ))}
-      <input onChange={(e) => setTitle(e.target.value)} />
-      <input onChange={(e) => setDescription(e.target.value)} />
+        ))
+      )}
+      <input value={title} onChange={(e) => setTitle(e.target.value)} />
+      <input value={description} onChange={(e) => setDescription(e.target.value)} />
       <button onClick={() => addHandler()}>Add</button>
     </div>
   )
