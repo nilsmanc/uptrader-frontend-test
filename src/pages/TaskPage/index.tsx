@@ -14,6 +14,8 @@ export const TaskPage = () => {
 
   const [text, setText] = useState('')
 
+  const [commentInput, showCommentInput] = useState(false)
+
   const addHandler = async () => {
     try {
       const fields = {
@@ -53,16 +55,32 @@ export const TaskPage = () => {
         <hr />
         <div>
           {comments.map((comment: CommentType) => (
-            <div>
-              <div className={styles.comment} key={comment._id}>
-                {comment.text}
-              </div>
-              <button onClick={() => deleteHandler(comment._id)}>X</button>
+            <div className={styles.comment}>
+              <div key={comment._id}>{comment.text}</div>
+              <button className={styles.button} onClick={() => deleteHandler(comment._id)}>
+                X
+              </button>
             </div>
           ))}
         </div>
-        <input value={text} onChange={(e) => setText(e.target.value)} />
-        <button onClick={() => addHandler()}>Add</button>
+        <hr />
+        {commentInput ? (
+          <div className={styles.addComment}>
+            Add Comment
+            <input
+              className={styles.input}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+            <button className={styles.button} onClick={() => addHandler()}>
+              Add
+            </button>
+          </div>
+        ) : (
+          <button className={styles.button} onClick={() => showCommentInput(true)}>
+            Add Comment
+          </button>
+        )}
       </div>
     </>
   )

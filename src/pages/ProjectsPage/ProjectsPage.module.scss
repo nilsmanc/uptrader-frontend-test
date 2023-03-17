@@ -6,3 +6,29 @@
   padding: 10px;
   width: 20%;
 }
+
+.addProject {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.titleInput {
+  width: 80%;
+  margin-right: 5px;
+}

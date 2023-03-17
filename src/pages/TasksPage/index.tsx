@@ -18,6 +18,8 @@ export const TasksPage = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
+  const [taskInputs, showTaskInputs] = useState(false)
+
   const deleteHandler = (id: string) => {
     dispatch(fetchRemoveTask(id))
   }
@@ -58,17 +60,39 @@ export const TasksPage = () => {
         <div>...Loading</div>
       ) : (
         tasks.map((task: TaskType) => (
-          <div>
+          <div className={styles.item}>
             <div onClick={() => handleClick(task._id)} key={task._id}>
               {task.title}
             </div>
-            <button onClick={() => deleteHandler(task._id)}>X</button>
+            <button className={styles.button} onClick={() => deleteHandler(task._id)}>
+              X
+            </button>
           </div>
         ))
       )}
-      <input value={title} onChange={(e) => setTitle(e.target.value)} />
-      <input value={description} onChange={(e) => setDescription(e.target.value)} />
-      <button onClick={() => addHandler()}>Add</button>
+      <hr />
+      {taskInputs ? (
+        <div className={styles.addTask}>
+          Add Task
+          <input
+            className={styles.input}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <input
+            className={styles.input}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <button className={styles.button} onClick={() => addHandler()}>
+            Add
+          </button>
+        </div>
+      ) : (
+        <button className={styles.button} onClick={() => showTaskInputs(true)}>
+          Add Task
+        </button>
+      )}
     </div>
   )
 }

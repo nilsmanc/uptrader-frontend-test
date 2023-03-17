@@ -11,5 +11,27 @@
   border: 1px solid rgb(53, 49, 112);
   padding: 3px;
   border-radius: 3px;
-  margin-bottom: 3px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.addComment {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.input {
+  width: 80%;
+  margin-right: 5px;
 }
