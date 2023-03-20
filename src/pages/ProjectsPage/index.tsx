@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+
 import instance from '../../axios'
 import { fetchProjects, fetchRemoveProject } from '../../redux/slices/projects'
 import { RootState, useAppDispatch } from '../../redux/store'
@@ -8,19 +9,19 @@ import { ProjectType } from '../../types'
 
 import styles from './ProjectsPage.module.scss'
 
-export const ProjectsPage = () => {
+export const ProjectsPage: React.FC = () => {
   const navigate = useNavigate()
 
   const [title, setTitle] = useState('')
   const [titleInput, showTitleInput] = useState(false)
 
-  const handleClick = (id: string) => {
-    navigate(`/tasks/${id}`)
-  }
-
   const dispatch = useAppDispatch()
   const projectsData = useSelector((state: RootState) => state.projects)
   const projects = useSelector((state: RootState) => state.projects.items)
+
+  const handleClick = (id: string) => {
+    navigate(`/tasks/${id}`)
+  }
 
   const isProjectsLoading = projectsData.status === 'loading'
 

@@ -1,7 +1,6 @@
 export type ProjectType = {
   title: string
   _id: string
-  __v: number
 }
 
 export type TaskType = {

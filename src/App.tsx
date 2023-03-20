@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import './App.css'
+
 import { ProjectsPage } from './pages/ProjectsPage'
 import { TaskPage } from './pages/TaskPage'
 import { TasksPage } from './pages/TasksPage'

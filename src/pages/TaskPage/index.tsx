@@ -1,20 +1,28 @@
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { RootState, useAppDispatch } from '../../redux/store'
-import { fetchTask } from '../../redux/slices/tasks'
 import { useSelector } from 'react-redux'
 
-import styles from './TaskPage.module.scss'
+import { RootState, useAppDispatch } from '../../redux/store'
+import { fetchTask } from '../../redux/slices/tasks'
+
 import { fetchTaskComments, fetchRemoveComment } from '../../redux/slices/comments'
 import { CommentType } from '../../types'
 import instance from '../../axios'
 
-export const TaskPage = () => {
+import styles from './TaskPage.module.scss'
+
+export const TaskPage: React.FC = () => {
   const location = useLocation()
 
   const [text, setText] = useState('')
-
   const [commentInput, showCommentInput] = useState(false)
+
+  const id = location.pathname.substring(6)
+
+  const dispatch = useAppDispatch()
+
+  const taskItem = useSelector((state: RootState) => state.tasks.item)
+  const comments = useSelector((state: RootState) => state.comments.items)
 
   const addHandler = async () => {
     try {
@@ -34,13 +42,6 @@ export const TaskPage = () => {
   const deleteHandler = (id: string) => {
     dispatch(fetchRemoveComment(id))
   }
-
-  const id = location.pathname.substring(6)
-
-  const dispatch = useAppDispatch()
-
-  const taskItem = useSelector((state: RootState) => state.tasks.item)
-  const comments = useSelector((state: RootState) => state.comments.items)
 
   useEffect(() => {
     dispatch(fetchTask(id))

@@ -1,28 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
+
 import instance from '../../axios'
 import { fetchProjectTasks, fetchRemoveTask } from '../../redux/slices/tasks'
-
 import { RootState, useAppDispatch } from '../../redux/store'
 import { TaskType } from '../../types'
+
 import styles from './TasksPage.module.scss'
 
-export const TasksPage = () => {
+export const TasksPage: React.FC = () => {
   const navigate = useNavigate()
-
-  const handleClick = (id: string) => {
-    navigate(`/task/${id}`)
-  }
-
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-
-  const [taskInputs, showTaskInputs] = useState(false)
-
-  const deleteHandler = (id: string) => {
-    dispatch(fetchRemoveTask(id))
-  }
 
   const dispatch = useAppDispatch()
 
@@ -34,6 +22,10 @@ export const TasksPage = () => {
   const tasks = useSelector((state: RootState) => state.tasks.items)
 
   const isTasksLoading = tasksData.status === 'loading'
+
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [taskInputs, showTaskInputs] = useState(false)
 
   const addHandler = async () => {
     try {
@@ -48,6 +40,14 @@ export const TasksPage = () => {
       console.warn(err)
       alert('Failed to add')
     }
+  }
+
+  const handleClick = (id: string) => {
+    navigate(`/task/${id}`)
+  }
+
+  const deleteHandler = (id: string) => {
+    dispatch(fetchRemoveTask(id))
   }
 
   useEffect(() => {
